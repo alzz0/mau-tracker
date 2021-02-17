@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+.chart-container{
+  background-color: #0036AA;
+}
+
+.custom-tool-tip-container{
+  display: inline-block;
+  position: absolute;
+  color: #fff;
+  z-index: 2;
+}
+
+
+
