@@ -1,12 +1,15 @@
 import React from 'react'
-import CustomToolTip from './components/CustomToolTip'
-import LineChart from './components/LineChart'
-import './App.css';
+import './app.css'
+import Header from './components/header/Header'
+import LineChart from './components/lineChart/LineChart'
+import Goals from './components/goals/Goals'
+
 
 function App() {
   return (
-    <div>
-      <CustomToolTip/>
+    <div className='main-container'>
+      <Header/>
+      <Goals/>
       <LineChart/>
       
     </div>

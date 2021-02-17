@@ -1,0 +1,19 @@
+.header-container{
+    display: inline-block;
+    position: absolute;
+    color: #fff;
+    margin-left: 40px;
+    margin-top: 40px;
+}
+.header-container h1 span{
+   font-weight: 900;
+}
+.header-container h1 {
+    font-weight: 300;
+ }
+
+
+ .header-container img {
+    width:180px;
+    margin-left: -12px;
+ }

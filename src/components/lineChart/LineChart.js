@@ -1,21 +1,22 @@
 import React,{useState, useEffect} from 'react'
-import '../App.css';
+import CustomToolTip from '../customToolTip/CustomToolTip'
+import './lineChart.css'
 
 import { LineChart as Chart,LabelList, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,ResponsiveContainer } from 'recharts';
 
 
 
 function LineChart(){
-    const [width,setWidth]=useState(0.7 * window.innerWidth)
+    const [width,setWidth]=useState(0.8 * window.innerWidth)
     const [height,setHeight]=useState(window.innerHeight)
     window.addEventListener("resize", update)
 
     function update() {
-        setWidth(0.7 * window.innerWidth)
+        setWidth(0.8 * window.innerWidth)
         setHeight(window.innerHeight)
       };
     useEffect(()=>{
-        setWidth(0.7*window.innerWidth)
+        setWidth(0.8*window.innerWidth)
         setHeight(window.innerHeight)
 
     })
@@ -24,96 +25,97 @@ function LineChart(){
     const data = [
         {
           name: 'Oct 20',
-          current: 2000,
-          target: 2400,
-          amt: 2400,
+          current: 20,
+          target: 24,
+          amt: 24,
         },
         {
           name: 'Nov 20',
-          current: 2600,
-          target: 2800,
-          amt: 2210,
+          current: 26,
+          target: 28,
+          amt: 22,
         },
         {
           name: 'Dec 20',
-          current: 3500,
-          target: 3200,
-          amt: 2290,
+          current: 35,
+          target: 32,
+          amt: 22,
         },
         {
           name: 'Jan 21',
-          current: 3600,
-          target: 3400,
-          amt: 2000,
+          current: 36,
+          target: 34,
+          amt: 20,
         },
         {
           name: 'Feb 21',
-          current: 4000,
-          target: 3600,
-          amt: 2181,
+          current: 40,
+          target: 36,
+          amt: 21,
         },
         {
           name: 'Mar 21',
           current: null,
-          target: 3800,
-          amt: 2500,
+          target: 38,
+          amt: 25,
         },
         {
           name: 'Apr 21',
           current: null,
-          target: 4000,
-          amt: 2100,
+          target: 40,
+          amt: 21,
         },
         {
             name: 'may 21',
             current: null,
-            target: 4400,
-            amt: 2100,
+            target: 44,
+            amt: 21,
           },
           {
             name: 'Jun 21',
             current: null,
-            target: 4900,
-            amt: 2100,
+            target: 49,
+            amt: 210,
           },
           {
             name: 'Jul 21',
             current: null,
-            target: 5100,
-            amt: 2100,
+            target: 51,
+            amt: 21,
           },
           {
             name: 'Aug 21',
             current: null,
-            target: 5800,
-            amt: 2100,
+            target: 58,
+            amt: 21,
           },
           {
             name: 'Sep 21',
             current: null,
-            target: 7000,
-            amt: 2100,
+            target: 70,
+            amt: 21,
           },
           {
             name: 'Nov 21',
             current: null,
-            target: 7300,
-            amt: 2100,
+            target: 73,
+            amt: 21,
           },
           {
             name: 'Dec 21',
             current: null,
-            target: 7500,
-            amt: 2100,
+            target: 75,
+            amt: 21,
           },
       ]
-      
+   
       
   
        
       
 return(
   <div className='chart-container'>
+    <CustomToolTip/>
      
   {/* <ResponsiveContainer> */}
   <Chart
@@ -127,11 +129,46 @@ return(
           bottom: 5,
         }}
       >
-        <CartesianGrid strokeWidth={14} stroke="#17153A" />
-        <XAxis dataKey="name" XAxisId={0}  style={{ textAnchor: 'middle', fontWeight: 'bold', fill: 'rgba(255,255,255, 0.9)' }}/>
+        <CartesianGrid strokeWidth={10} stroke="#17153A" />
+
+        <XAxis
+          xAxisId={0}
+          dy={-15}
+          dx={0}
+          style={{
+            textAnchor: 'middle',
+            fontWeight: 'bold',
+            fill: '#018DBE',
+            fontSize:'20px',
+         
+          }}
+          label={{ value: '', angle: 0, position: 'bottom' }}
+          
+          dataKey='target'
+          tickLine={false}
+          tickFormatter={(tickValue) => `${tickValue}M`}
+
+        />
+           <XAxis
+          tickLine={true}
+          xAxisId={1}
+          style={{
+            textAnchor: 'middle',
+            fontWeight: 'bold',
+            fill: '#CED0D1',
+          }}
+          dy={0}
+          dx={-0}
+          label={{ value: '', angle: 0, position: 'bottom' }}
+          
+          dataKey='name'
+          tickLine={false}
+          
+          tick={{ fontSize: 9, angle: 0 }}
+        />
         
         
-        <YAxis  orientation='right'style={{  fontWeight: 'bold', fill: 'rgba(255,255,255, 0.9)' }} />
+        <YAxis dataKey="target"  tickFormatter={(tickValue) => `${tickValue }M`} interval={0} tickCount={data.length} orientation='right' style={{  fontWeight: 'bold', fill: '#CED0D1' }} />
         <Tooltip/>
         <Legend />
         

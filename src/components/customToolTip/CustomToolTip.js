@@ -1,12 +1,10 @@
 import React from 'react'
-
+import './customToolTip.css'
 function CustomToolTip (){
     return(
         <div className='custom-tool-tip-container'>
-            <h2>Feb 1st, 2021</h2>
-            <h1>12.16 <br/> Million</h1>
-
-
+            <h3>Feb 1st, 2021</h3>
+            <h1>12.16 <br/> MILLION</h1>
         </div>
     )
 }
