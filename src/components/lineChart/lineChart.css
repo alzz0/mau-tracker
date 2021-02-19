@@ -11,3 +11,16 @@ background: linear-gradient(90deg, rgba(23,21,58,0.6839110644257703) 1%, rgba(0,
   .recharts-wrapper{
     margin-left:auto ;
   }
+
+  /*  media querys */
+
+  @media only screen and (max-width: 1030px) {
+    .chart-container {
+     width: 100%;
+     /* background: rgb(23,21,58);
+     background: linear-gradient(0deg, rgba(23,21,58,1) 18%, rgba(0,54,170,1) 49%, rgba(23,21,58,1) 93%); */
+
+     background: rgb(0,54,170);
+     background: radial-gradient(circle, rgba(0,54,170,1) 0%, rgba(23,21,58,1) 75%);
+    }
+  }

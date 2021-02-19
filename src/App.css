@@ -1,4 +1,12 @@
 .main-container{
-    background: rgb(23,21,58);
-    background: linear-gradient(90deg, rgba(23,21,58,1) 24%, rgba(0,54,170,0.8687850140056023) 56%);
+  background: rgb(23,21,58);
+background: linear-gradient(90deg, rgba(23,21,58,1) 24%, rgba(0,54,170,0.8687850140056023) 56%);
+}
+
+@media only screen and (max-width: 1030px){
+  .main-container{
+    background: rgb(32,29,71);
+    background: linear-gradient(0deg, rgba(23,21,58,1) 48%, rgba(0,54,170,1) 0%, rgba(23,21,58,1) 51%);
+ 
+  }
 }

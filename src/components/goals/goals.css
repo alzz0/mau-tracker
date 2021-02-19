@@ -6,7 +6,6 @@
 }
 
 .goal-tab{
-    text-align: center;
     box-shadow: 0px 13px 24px 0px rgba(0,0,0,0.67);
     width: 150px;
     height: 50px;
@@ -24,13 +23,23 @@
 .target-tab{
     color:#6B43C6;
 }
+.current-target-text{
+    margin-left: 45px;
+}
 
+.goal-bullet{
+    font-size: 60px;
+    position: absolute;
+    left: 22px;
+    line-height: 40px;
+}
 
 .goals-box{
+    margin-top: 60px;
     box-shadow: 0px 13px 24px 0px rgba(0,0,0,0.67);
     border-radius: 16px;
-    width: 170px;
-    height: 200px;
+    width: 180px;
+    height: 250px;
     background-color: #242151;
 }
 
@@ -40,3 +49,33 @@
     font-size: 20px;
     padding: 15px;
 }
+
+
+@media only screen and (max-width: 1030px) {
+    .goals-container {
+     position: relative;
+     display: inherit;
+     text-align: center;
+     padding:35px 0 35px 0;
+     margin: 0;
+    }
+    .goals-box{
+        margin: 0 auto;
+        text-align: left;
+        width: 60%;
+    }
+    .current-target{
+        display:inline-flex;
+        text-align:left;
+        max-width: 90%;
+    }
+    .current-tab{
+        margin-right: 10px;
+    }
+    .header-container{
+        position: relative;
+    }
+    .header-container h1{
+        display: inline;
+    }
+  }
