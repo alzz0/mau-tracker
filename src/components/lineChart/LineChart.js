@@ -104,7 +104,7 @@ function LineChart({ width, height }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log('h');
+
     callData();
 
     //data call every two hours
@@ -121,9 +121,9 @@ function LineChart({ width, height }) {
         headers,
       })
       .then((res) => {
-        console.log(res);
+
         setMauData(res.data.MAUs);
-        console.log(mauData);
+
         setLoading(false);
       });
   }
@@ -132,17 +132,17 @@ function LineChart({ width, height }) {
 
   const formatXAxis = (tickItem) => {
     let strTick = tickItem.toString();
-    console.log(strTick.length);
+
     if (strTick.length === 6) {
       let firstNum = strTick.slice(0, 1);
       let secondNum = strTick.slice(1, 2);
-      console.log(`${firstNum}.${secondNum}`);
+      
       let total = Number(`0.${firstNum}${secondNum} `);
       return (tickItem = total);
     } else {
       let firstNum = strTick.slice(0, 1);
       let secondNum = strTick.slice(1, 2);
-      console.log(`${firstNum}.${secondNum}`);
+    
       let total = Number(`${firstNum}.${secondNum} `);
       return (tickItem = total);
     }
@@ -150,23 +150,24 @@ function LineChart({ width, height }) {
 
   const formatYAxis = (tickItem) => {
     let strTick = tickItem.toString();
-    console.log(strTick.length);
-   if(strTick.length===6){
-    let firstNum = strTick.slice(0, 1);
-    let secondNum = strTick.slice(1, 2);
-    console.log(`${firstNum}.${secondNum}`);
-    let total = Number(`0.${firstNum}${secondNum} `);
-    return (tickItem = total);
-   }else{
-    let firstNum = strTick.slice(0, 1);
-    let secondNum = strTick.slice(1, 2);
-    console.log(`${firstNum}.${secondNum}`);
-    let total = Number(`${firstNum}.${secondNum} `);
-    return (tickItem = total);
-   }
+ 
+    if (strTick.length === 6) {
+      let firstNum = strTick.slice(0, 1);
+      let secondNum = strTick.slice(1, 2);
+     
+      let total = Number(`0.${firstNum}${secondNum} `);
+      return (tickItem = total);
+    } else {
+      let firstNum = strTick.slice(0, 1);
+      let secondNum = strTick.slice(1, 2);
     
-    
+      let total = Number(`${firstNum}.${secondNum} `);
+      return (tickItem = total);
+    }
   };
+
+
+  
   if (!loading) {
     return (
       <div className='chart-container'>
@@ -192,19 +193,20 @@ function LineChart({ width, height }) {
               textAnchor: 'middle',
               fontWeight: 'bold',
               fill: '#018DBE',
-              fontSize: '20px',
+              fontSize: '30px',
             }}
             label={{ value: '', angle: 0, position: 'bottom' }}
             dataKey='target'
             tickLine={false}
-            interval={0}
+            //interval={0}
+            //tickCount={1}
             // tickFormatter={(tickValue) => `${tickValue}M`}
             tickFormatter={formatXAxis}
           />
           <XAxis
             tickLine={false}
             xAxisId={1}
-            interval={0}
+           // interval={0}
             style={{
               textAnchor: 'middle',
               fontWeight: 'bold',
@@ -218,6 +220,7 @@ function LineChart({ width, height }) {
           />
 
           <YAxis
+          tickLine={false}
             dataKey='target'
             // tickFormatter={(tickValue) => `${tickValue}M`}
             tickFormatter={formatYAxis}
@@ -235,11 +238,11 @@ function LineChart({ width, height }) {
             style={{ strokeLinecap: 'round' }}
             strokeWidth={6}
             activeDot={{
-              fill: '#3F99F7',
-              stroke: '#fff',
-              strokeWidth: 3,
+              fill: '#fff',
+              stroke: 'rgba(255, 255, 255,0.3)',
+              strokeWidth: 44,
               r: 11,
-              className: 'boxShadow',
+              
             }}
             dot={false}
           />

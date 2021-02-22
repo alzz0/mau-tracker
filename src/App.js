@@ -14,7 +14,7 @@ function App() {
 
   function update() {
     if (window.innerWidth <= 1030) {
-      setWidth(0.95 * window.innerWidth);
+      setWidth(1 * window.innerWidth);
       setHeight(0.4 * window.innerHeight);
     } else {
       setWidth(0.8 * window.innerWidth);
@@ -25,7 +25,7 @@ function App() {
 
   useEffect(() => {
     if (window.innerWidth <= 1030) {
-      setWidth(0.95 * window.innerWidth);
+      setWidth(1 * window.innerWidth);
       setHeight(0.4 * window.innerHeight);
     } else {
       setWidth(0.8 * window.innerWidth);

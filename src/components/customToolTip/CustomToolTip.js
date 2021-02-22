@@ -3,7 +3,7 @@ import './customToolTip.css'
 function CustomToolTip ({data}){
     const [date,setDate]= useState()
     const[mau,setMau]=useState()
-    console.log(data)
+
 
  useEffect(()=>{
      createDate()
@@ -17,8 +17,7 @@ function createGoal(){
     let tenthDecPlace=strData.slice(2,4)
     let total=Number(`${firstDecPlace}.${tenthDecPlace}`)
     setMau(total)
-    console.log(total)
-    console.log(typeof total)
+ 
     
 }
 function createDate(){
@@ -35,7 +34,7 @@ function createDate(){
     return(
         <div className='custom-tool-tip-container'>
             <h3>{date && date }</h3>
-            <h1>{mau && mau}<br/> MILLION</h1>
+            <h1><span id='custom-mau-num'>{mau && mau}</span><br/> MILLION</h1>
         </div>
     )
 }
