@@ -4,6 +4,7 @@ function Header (){
     return(
 <div className='header-container'>
 
+
     <img alt='logo' width={180} height={28.66} src='https://prodcdn.kidoodle.tv/kidoodle-2019-update/images/kidoodle-logo-2020-White.png'/>
     <h1>
         <span>M</span>onthly

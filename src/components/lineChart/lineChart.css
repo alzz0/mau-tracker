@@ -10,13 +10,15 @@ background: linear-gradient(90deg, rgba(23,21,58,0.6839110644257703) 1%, rgba(0,
 
   .recharts-wrapper{
     margin-left:auto ;
+    width:100% ;
   }
 
 
   .recharts-cartesian-axis-line{
     display: none;
   }
-  /*  media querys */
+ 
+
 
   @media only screen and (max-width: 1030px) {
     .chart-container {
@@ -25,10 +27,15 @@ background: linear-gradient(90deg, rgba(23,21,58,0.6839110644257703) 1%, rgba(0,
      background: linear-gradient(0deg, rgba(23,21,58,1) 18%, rgba(0,54,170,1) 49%, rgba(23,21,58,1) 100%); */
      background: rgb(0,54,170);
      background: radial-gradient(circle, rgba(0,54,170,1) 0%, rgba(23,21,58,1) 85%);
+     margin:0 auto;
     }
 
     .recharts-wrapper{
+      width: 98%;
+      margin: 0 auto;
       background: rgb(23,21,58);
-background: linear-gradient(0deg, rgba(23,21,58,1) 24%, rgba(0,54,170,0) 38%);
+      background: linear-gradient(0deg, rgba(23,21,58,1) 24%, rgba(0,54,170,0) 38%);
     }
   }
+
+

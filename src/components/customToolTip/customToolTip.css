@@ -29,13 +29,13 @@
 
   @media only screen and (max-width: 1030px) {
 .custom-tool-tip-container{
-  text-align: center;
+  /* text-align: center;
     align-items: center;
     justify-content: center;
     width: 100%;
-  
-    top: 141px;
-    right: 32px;
+    right: 32px; */
+    top: 151px;
+   
 }
 
 .custom-tool-tip-container h1{

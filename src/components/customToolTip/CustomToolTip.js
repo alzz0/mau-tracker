@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from 'react'
 import './customToolTip.css'
-function CustomToolTip ({data}){
+function CustomToolTip ({data,actualWidth}){
     const [date,setDate]= useState()
     const[mau,setMau]=useState()
 
@@ -29,10 +29,9 @@ function createDate(){
 }
        
     
-    
-
     return(
         <div className='custom-tool-tip-container'>
+             {actualWidth<=1030 && <img  alt='play monster'className='playMonster'src={process.env.PUBLIC_URL + '/images/playMonster.png'} /> }
             <h3>{date && date }</h3>
             <h1><span id='custom-mau-num'>{mau && mau}</span><br/> MILLION</h1>
         </div>

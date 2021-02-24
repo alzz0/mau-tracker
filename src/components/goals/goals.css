@@ -2,9 +2,33 @@
     display: inline-block;
     position: absolute;
     top: 32%;
-    margin-left: 40px;
+    margin-left: 24px;
+    z-index: 0;
+}
+.current-target{
+    position: relative;
+    z-index: -1;
 }
 
+.goals-label{
+    display: inline-block;
+    position: absolute;
+    width: 75%;
+}
+
+.goals-label ul  {
+    list-style: none;
+    padding-left: 0;
+}
+
+.goals-label ul li  {
+    margin-bottom: 32px;
+    color: #00BDFF;
+    font-weight: 700;
+}
+.goals-label ul li span {
+  float: right;
+}
 .goal-tab{
     box-shadow: 0px 13px 24px 0px rgba(0,0,0,0.67);
     width: 150px;
@@ -13,7 +37,6 @@
     font-weight: bold;
     background-color: #332F67;
     border-radius: 16px;
-    /* margin-bottom: 15px; */
     margin:0 auto 15px auto
 }
 .current-tab{
@@ -21,7 +44,7 @@
 }
 
 .target-tab{
-    color:#6B43C6;
+    color: rgba(107, 67, 198, 1)
 }
 .current-target-text{
     margin-left: 45px;
@@ -30,26 +53,51 @@
 .goal-bullet{
     font-size: 60px;
     position: absolute;
-    left: 22px;
+    left: 33px;
     line-height: 40px;
+    
+}
+
+/* .goal-bullet-current{
+    text-shadow: 0px 0px 20px #00BDFF;
+} */
+.goal-bullet-target{
+    text-shadow: 0px 0px 10px #6B43C6;
+    color: rgba(107, 67, 198, 0.51)
 }
 
 .goals-box{
+    position: relative;
     margin-top: 60px;
     box-shadow: 0px 13px 24px 0px rgba(0,0,0,0.67);
     border-radius: 16px;
-    width: 180px;
-    height: 250px;
+    width: 195px;
+    height: 270px;
     background-color: #242151;
+}
+.sixEyedMonster{
+    position: absolute;
+    top: -81px;
+    right: -43px;
+    z-index: -1;
+
+}
+.playMonster{
+    position: absolute;
+    top: -71px;
+    left: -24px;
 }
 
 .goals-box h1{
     color: #fff;
-    font-weight: bold;
+    font-weight: 800;
     font-size: 20px;
-    padding: 15px;
+    padding: 15px 15px 0 15px;
+    margin-bottom: 5px;
 }
-
+.current-target{
+    z-index: -1;
+}
 
 @media only screen and (max-width: 1030px) {
     .goals-container {
@@ -63,6 +111,18 @@
         margin: 0 auto;
         text-align: left;
         width: 60%;
+        max-width: 440px;
+    }
+    .sixEyedMonster{
+        position: absolute;
+        top: -22px;
+        right: -60px;
+
+    }
+    .playMonster{
+        position: absolute;
+        top: -65px;
+        left: -36px;
     }
     .current-target{
         display:inline-flex;

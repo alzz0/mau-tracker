@@ -1,17 +1,18 @@
 .progress-bar{
     position: relative;
+    display: inline-block;
     border-radius: 50px;
     border: 1px solid #333;
-    background-image: linear-gradient(0deg, #6b43c6 25%, #242151 25%, #242151 50%, #6b43c6 50%, #6b43c6 75%, #242151 75%, #242151 100%);
+    background-image: linear-gradient(0deg, rgba(107, 67, 198, 0.51) 25%, #242151 25%, #242151 50%, #6b43c6 50%, #6b43c6 75%, #242151 75%, #242151 100%);
     background-size: 80.00px 80.00px;
-    width: 7px;
+    width: 3px;
     height: 165px;
     margin: 15px;
 
 }
 
 .filler{
-    background: #00BDFF;
+    background: rgba(0, 189, 255, 0.7);
     height: 100%;
     border-radius: inherit;
     transition: height .3s ease-in;
@@ -21,10 +22,10 @@
     width: 11px;
     height: 11px;
     border-radius: 50%;
-    
-    background: #6b43c6;
+    background: rgba(107, 67, 198, 1);
     position: absolute;
-    left: -2px;
+    left: -3.7px;
+    opacity: 1;
 
 }
 
@@ -33,11 +34,11 @@
 }
 
  .marker-two{
-    top: 55px;
+    top: 50px;
 }
 
 .marker-three{
-    top: 110px;
+    top: 100px;
 }
 
 .marker-four{
@@ -47,8 +48,9 @@
 .filled{
     width: 16px;
     height: 16px;
-    left: -5px;
-    border: 1px solid #f5f7fa;
+    left: -6px;
+
+    /* border: 1px solid #f5f7fa; */
     background: #00BDFF;
 }
 

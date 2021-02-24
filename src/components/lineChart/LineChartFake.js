@@ -13,123 +13,126 @@ import axios from 'axios';
 import CustomToolTip from '../customToolTip/CustomToolTip';
 import './lineChart.css';
 
-function LineChart({ width, height,actualWidth }) {
-  console.log(width)
+function LineChartFake({ width, height }) {
   
 
   const placeholderData = [
     {
       name: 'Oct 20',
-      current: 20,
-      target: 24,
+      current: 404652,
+      target: 350000,
       amt: 24,
     },
     {
       name: 'Nov 20',
-      current: 26,
-      target: 28,
+      current: 639674,
+      target: 600000,
       amt: 22,
     },
     {
       name: 'Dec 20',
-      current: 35,
-      target: 32,
+      current: 1598364,
+      target: 1000000,
       amt: 22,
     },
     {
       name: 'Jan 21',
-      current: 36,
-      target: 34,
+      current: 2690905,
+      target: 2500000,
       amt: 20,
     },
     {
       name: 'Feb 21',
-      current: 40,
-      target: 36,
+      current: 3752389,
+      target: 3500000,
       amt: 21,
     },
     {
       name: 'Mar 21',
-      current: null,
-      target: 38,
+      current: 4989991,
+      target: 3800000,
       amt: 25,
     },
     {
       name: 'Apr 21',
-      current: null,
-      target: 40,
+      current: 4500000,
+      target: 4000000,
       amt: 21,
     },
     {
       name: 'may 21',
-      current: null,
-      target: 44,
+      current: 5338452,
+      target: 5000000,
       amt: 21,
     },
     {
       name: 'Jun 21',
-      current: null,
-      target: 49,
+      current: 5133552,
+      target: 5500000,
       amt: 210,
     },
     {
       name: 'Jul 21',
-      current: null,
-      target: 51,
-      amt: 21,
+      current: 5500000,
+      target: 6300000,
+      amt: 63000000,
     },
     {
       name: 'Aug 21',
-      current: null,
-      target: 58,
-      amt: 21,
+      current: 4500000,
+      target: 5500000,
+      amt: 55000000,
     },
     {
       name: 'Sep 21',
-      current: null,
-      target: 70,
+      current: 6502300,
+      target: 6302300,
       amt: 21,
     },
     {
       name: 'Nov 21',
-      current: null,
-      target: 73,
+      current: 7023000,
+      target: 7402000,
       amt: 21,
     },
     {
       name: 'Dec 21',
-      current: null,
-      target: 75,
+      current: 7802300,
+      target: 8023000,
       amt: 21,
     },
+
+   
   ];
-  const [mauData, setMauData] = useState();
+  const [mauData, setMauData] = useState(placeholderData);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
 
     callData();
+    randomizeData()
 
     //data call every two hours
-    setInterval(callData, 7200000);
+    setInterval(randomizeData, 5000);
   }, []);
 
-  async function callData() {
-    const headers = {
-      'Content-Type': 'application/json',
-      'X-Api-Key': 'M60PnJQAjw3a6ITNE2Pae949A6kQ82Eg946d4QQ4',
-    };
-    axios
-      .get('https://metrics.kidoodle.tv/v1-dev/office/', {
-        headers,
-      })
-      .then((res) => {
-        setMauData(res.data.MAUs);
-        setLoading(false);
-      });
+   function callData() {
+   setMauData(placeholderData)
+   setLoading(false)
   }
 
-  let strokeWidth = actualWidth <= 1030 ? 4 : 10;
+  function randomizeData(){
+    let newData=[mauData]
+    mauData.map(data=>{
+       data.current=Math.round(Math.random()*15)
+       data.target=Math.round(Math.random()*12)
+       newData.push(data)
+    })
+    setMauData(newData)
+ 
+}
+
+  let strokeWidth = window.innerWidth <= 1030 ? 4 : 10;
 
   const formatXAxis = (tickItem) => {
     let strTick = tickItem.toString();
@@ -169,10 +172,10 @@ function LineChart({ width, height,actualWidth }) {
 
 
   
-  if (!loading) {
+  if (!loading)  {
     return (
       <div className='chart-container' >
-        <CustomToolTip data={mauData} actualWidth={actualWidth}/>
+        <CustomToolTip data={mauData} />
         <Chart
           radius={[0, 5, 5, 0]}
           width={width}
@@ -199,10 +202,10 @@ function LineChart({ width, height,actualWidth }) {
             label={{ value: '', angle: 0, position: 'bottom' }}
             dataKey='target'
             tickLine={false}
-            //interval={0}
+            interval={0}
             //tickCount={1}
             // tickFormatter={(tickValue) => `${tickValue}M`}
-            tickFormatter={formatXAxis}
+            //tickFormatter={formatXAxis}
           />
           <XAxis
             tickLine={false}
@@ -224,13 +227,10 @@ function LineChart({ width, height,actualWidth }) {
           tickLine={false}
             dataKey='target'
             // tickFormatter={(tickValue) => `${tickValue}M`}
-            padding={{ top: 10 }}
-            tickFormatter={formatYAxis}
+            //tickFormatter={formatYAxis}
             interval={0}
             tickCount={mauData.length}
             width={30}
-            
-            minTickGap={5}
             orientation='right'
             style={{ fontWeight: 'bold', fill: '#CED0D1' }}
           />
@@ -240,8 +240,7 @@ function LineChart({ width, height,actualWidth }) {
           <Line
             dataKey='current'
             stroke='#00BDFF'
-            
-            style={{ strokeLinecap: 'round'}}
+            style={{ strokeLinecap: 'round' }}
             strokeWidth={6}
             activeDot={{
               fill: '#fff',
@@ -268,8 +267,6 @@ function LineChart({ width, height,actualWidth }) {
   }
 }
 
-export default LineChart;
+export default LineChartFake;
 
-// parameters
 
-// inside Line type="monotone" makes line soft instead of sharp
