@@ -6,16 +6,15 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
+
 } from 'recharts';
 
 import axios from 'axios';
 import CustomToolTip from '../customToolTip/CustomToolTip';
 import './lineChart.css';
 
-function LineChart({ width, height,actualWidth }) {
-  console.log(width)
-  
+function LineChart({ width, height, actualWidth }) {
+
 
   const placeholderData = [
     {
@@ -105,11 +104,14 @@ function LineChart({ width, height,actualWidth }) {
   ];
   const [mauData, setMauData] = useState();
   const [loading, setLoading] = useState(true);
-
+  let chartWidth = actualWidth <= 1030 ? 5 : 30
+  let strokeWidth = actualWidth <= 1030 ? 4 : 10;
+  let xAxisPadding0 = actualWidth <= 1030 ? 10 : -15
+  let xAxisPadding1 = actualWidth <= 1030 ? 0 : 10
+  let xAxisFontSize= actualWidth<=1030? ('20px'):('30px')
+  
   useEffect(() => {
-
     callData();
-
     //data call every two hours
     setInterval(callData, 7200000);
   }, []);
@@ -129,50 +131,61 @@ function LineChart({ width, height,actualWidth }) {
       });
   }
 
-  let strokeWidth = actualWidth <= 1030 ? 4 : 10;
+  const CustomizedDot = (props) => {
+    const { cx, cy, stroke, payload, value } = props;
+    let latestDataPoint = mauData.slice(-1)[0].current
+    if (value === latestDataPoint) {
+        return (
+          <svg x={cx - 15} y={cy - 15} width={30} height={30} fill="#fff" viewBox="0 0 1024 1024">
+            <path d="M 512 1009.984 c -274.912 0 -497.76 -222.848 -497.76 -497.76 s 222.848 -497.76 497.76 -497.76 c 274.912 0 497.76 222.848 497.76 497.76 s -222.848 497.76 -497.76 497.76 z z z z" />
+          </svg>
+        );
+    }
+    return null
+  };
 
   const formatXAxis = (tickItem) => {
     let strTick = tickItem.toString();
 
     if (strTick.length === 6) {
       let firstNum = strTick.slice(0, 1);
-      let secondNum = strTick.slice(1, 2);
-      
-      let total = Number(`0.${firstNum}${secondNum} `);
+      let secondNum = strTick.slice(1, 1);
+      let total = Number(`.${firstNum}${secondNum} `);
       return (tickItem = total);
+
     } else {
+
       let firstNum = strTick.slice(0, 1);
       let secondNum = strTick.slice(1, 2);
-    
-      let total = Number(`${firstNum}.${secondNum} `);
+      let total = Number(`${firstNum}${secondNum} `);
       return (tickItem = total);
     }
   };
 
   const formatYAxis = (tickItem) => {
     let strTick = tickItem.toString();
- 
+
     if (strTick.length === 6) {
       let firstNum = strTick.slice(0, 1);
-      let secondNum = strTick.slice(1, 2);
-     
-      let total = Number(`0.${firstNum}${secondNum} `);
+      let secondNum = strTick.slice(1, 1);
+
+      let total = Number(`.${firstNum}${secondNum} `);
       return (tickItem = total);
     } else {
       let firstNum = strTick.slice(0, 1);
       let secondNum = strTick.slice(1, 2);
-    
-      let total = Number(`${firstNum}.${secondNum} `);
+
+      let total = Number(`${firstNum}${secondNum} `);
       return (tickItem = total);
     }
   };
 
 
-  
+
   if (!loading) {
     return (
       <div className='chart-container' >
-        <CustomToolTip data={mauData} actualWidth={actualWidth}/>
+        <CustomToolTip data={mauData} actualWidth={actualWidth} />
         <Chart
           radius={[0, 5, 5, 0]}
           width={width}
@@ -188,70 +201,77 @@ function LineChart({ width, height,actualWidth }) {
           <CartesianGrid strokeWidth={strokeWidth} stroke='#17153A' />
           <XAxis
             xAxisId={0}
-            dy={-15}
+            dy={xAxisPadding0}
             dx={0}
             style={{
               textAnchor: 'middle',
               fontWeight: 'bold',
               fill: '#018DBE',
-              fontSize: '30px',
+              fontSize: xAxisFontSize,
             }}
             label={{ value: '', angle: 0, position: 'bottom' }}
             dataKey='target'
             tickLine={false}
+            axisLine={false}
+            mirror={true}
             //interval={0}
             //tickCount={1}
             // tickFormatter={(tickValue) => `${tickValue}M`}
             tickFormatter={formatXAxis}
+
           />
           <XAxis
             tickLine={false}
             xAxisId={1}
-           // interval={0}
+            // interval={0}
             style={{
               textAnchor: 'middle',
               fontWeight: 'bold',
               fill: '#CED0D1',
             }}
-            dy={0}
+
+            axisLine={false}
+            dy={xAxisPadding1}
             dx={-0}
             label={{ value: '', angle: 0, position: 'bottom' }}
             dataKey='name'
-            tick={{ fontSize: 9, angle: 0 }}
+            tick={{ fontSize: 12, angle: 0 }}
           />
 
           <YAxis
-          tickLine={false}
+            tickLine={false}
             dataKey='target'
             // tickFormatter={(tickValue) => `${tickValue}M`}
             padding={{ top: 10 }}
             tickFormatter={formatYAxis}
             interval={0}
             tickCount={mauData.length}
-            width={30}
-            
+            width={chartWidth}
+            axisLine={false}
             minTickGap={5}
             orientation='right'
             style={{ fontWeight: 'bold', fill: '#CED0D1' }}
           />
           <Tooltip />
-         
+
 
           <Line
             dataKey='current'
             stroke='#00BDFF'
-            
-            style={{ strokeLinecap: 'round'}}
+            style={{ strokeLinecap: 'round' }}
             strokeWidth={6}
             activeDot={{
               fill: '#fff',
               stroke: 'rgba(255, 255, 255,0.3)',
               strokeWidth: 44,
               r: 11,
-              
+
+
             }}
-            dot={false}
+
+            dot={<CustomizedDot />}
           />
+
           <Line
             strokeDasharray='25 25'
             strokeWidth={6}

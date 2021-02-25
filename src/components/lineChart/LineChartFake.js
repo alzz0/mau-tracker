@@ -13,7 +13,7 @@ import axios from 'axios';
 import CustomToolTip from '../customToolTip/CustomToolTip';
 import './lineChart.css';
 
-function LineChartFake({ width, height }) {
+function LineChartFake({ width, height,actualWidth }) {
   
 
   const placeholderData = [
@@ -124,8 +124,8 @@ function LineChartFake({ width, height }) {
   function randomizeData(){
     let newData=[mauData]
     mauData.map(data=>{
-       data.current=Math.round(Math.random()*15)
-       data.target=Math.round(Math.random()*12)
+       data.current=Math.round(Math.random()*100)
+       data.target=Math.round(Math.random()*120)
        newData.push(data)
     })
     setMauData(newData)
@@ -133,6 +133,26 @@ function LineChartFake({ width, height }) {
 }
 
   let strokeWidth = window.innerWidth <= 1030 ? 4 : 10;
+  const CustomizedDot = (props) => {
+    const { cx, cy, stroke, payload, value } = props;
+    
+    let latestDataPoint=mauData.slice(-1)[0].current
+  if(value===latestDataPoint){
+
+  
+    
+      return (
+        <svg x={cx - 15} y={cy - 15} width={30} height={30} fill="#fff" viewBox="0 0 1024 1024">
+      
+          <path d="M 512 1009.984 c -274.912 0 -497.76 -222.848 -497.76 -497.76 s 222.848 -497.76 497.76 -497.76 c 274.912 0 497.76 222.848 497.76 497.76 s -222.848 497.76 -497.76 497.76 z z z z"/>
+        </svg>
+        
+      )
+    
+    }
+  
+   return null
+  };
 
   const formatXAxis = (tickItem) => {
     let strTick = tickItem.toString();
@@ -175,7 +195,7 @@ function LineChartFake({ width, height }) {
   if (!loading)  {
     return (
       <div className='chart-container' >
-        <CustomToolTip data={mauData} />
+        <CustomToolTip data={mauData} actualWidth={actualWidth} />
         <Chart
           radius={[0, 5, 5, 0]}
           width={width}
@@ -202,7 +222,8 @@ function LineChartFake({ width, height }) {
             label={{ value: '', angle: 0, position: 'bottom' }}
             dataKey='target'
             tickLine={false}
-            interval={0}
+            axisLine={false}
+            //interval={0}
             //tickCount={1}
             // tickFormatter={(tickValue) => `${tickValue}M`}
             //tickFormatter={formatXAxis}
@@ -216,6 +237,7 @@ function LineChartFake({ width, height }) {
               fontWeight: 'bold',
               fill: '#CED0D1',
             }}
+            axisLine={false}
             dy={0}
             dx={-0}
             label={{ value: '', angle: 0, position: 'bottom' }}
@@ -224,6 +246,8 @@ function LineChartFake({ width, height }) {
           />
 
           <YAxis
+          padding={{ top: 10 }}
+          axisLine={false}
           tickLine={false}
             dataKey='target'
             // tickFormatter={(tickValue) => `${tickValue}M`}
@@ -249,7 +273,7 @@ function LineChartFake({ width, height }) {
               r: 11,
               
             }}
-            dot={false}
+            dot={<CustomizedDot/>}
           />
           <Line
             strokeDasharray='25 25'

@@ -2,7 +2,6 @@ import React from 'react';
 import ProgressBar from '../progressbar/ProgressBar'
 import './goals.css';
 function Goals({width}) {
-  console.log('goals',width)
   return (
     <div className='goals-container'>
       <div className='current-target'>
